@@ -26,7 +26,9 @@ Gem::Specification.new do |s|
   s.add_dependency "uglifier", ">= 1.3.0"
   s.add_dependency "coffee-rails", "~> 4.0.0"
   s.add_dependency "jquery-rails"
+  s.add_dependency "bootstrap-sass"
   s.add_dependency "turbolinks"
   s.add_dependency "slim"
   s.add_dependency "sqlite3"
+  s.add_dependency "omniauth"
 end

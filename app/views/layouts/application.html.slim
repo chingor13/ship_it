@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title Ship It
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          = link_to root_path, class: "brand" do
+            | Ship It!
+          .nav-collapse.collapse
+            ul.nav
+              li
+                | Project
+    .container
+      .row-fluid
+        .span9
+          = yield
+        .span3
+          | current deploys
