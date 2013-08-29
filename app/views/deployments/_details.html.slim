@@ -1,0 +1,26 @@
+- environment = deployment.environment
+- project = environment.project
+
+dl.status.dl-horizontal data-deployment-id=deployment.id
+  dt Status:
+  dd = deployment.status
+
+  - if deployment.completed?
+    dt Duration:
+    dd = duration_text(deployment.duration)
+  - elsif deployment.started?
+    dt Time remaining:
+    dd = time_remaining(deployment)
+
+    dt Progress:
+    dd = render partial: 'progress', locals: {deployment: deployment}
+
+    - unless deployment.user_terminated?
+      = link_to "Terminate", [:terminate, project, environment, deployment], remote: true, class: 'btn'
+
+- if deployment.failed?
+  - new_deployment = Deployment.new(branch_id: deployment.branch_id, revision: deployment.revision)
+  = form_for([project, environment, new_deployment], html: {class: 'form form-inline'}) do |form|
+    = form.hidden_field :branch_id 
+    = form.hidden_field :revision
+    = form.submit 'Re-deploy', class: 'btn btn-primary'

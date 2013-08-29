@@ -1,0 +1,11 @@
+h1 New Project
+
+= form_for @project do |form|
+  = form.label :name, "Project name"
+  = form.text_field :name
+
+  = form.label :git_repo_url, "Git repo URL"
+  = form.text_field :git_repo_url
+
+  .form-actions
+    = form.submit "Create", class: "btn btn-primary"

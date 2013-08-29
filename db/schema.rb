@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20130828234830) do
     t.datetime "started_at"
     t.datetime "finished_at"
     t.integer  "created_by_id"
+    t.boolean  "user_terminated"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

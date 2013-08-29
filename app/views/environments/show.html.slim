@@ -1,0 +1,46 @@
+h1 #{@project.name} : #{@environment.name}
+
+= form_for [@project, @environment, Deployment.new], html: {class: "form form-inline"} do |form|
+  = form.select :branch_id, @project.branches.map{|b| [b.name, b.id]}
+  | &nbsp;
+  = form.submit "Deploy", class: "btn btn-primary"
+
+#pending_changes
+  = render partial: "changes", locals: {environment: @environment, branch: @environment.current_branch || @project.branches.first}
+
+h3 Deployment History
+table.table.table-striped
+  thead
+    tr
+      th Branch
+      th Revision
+      th Deployed at
+      th Deployed by
+      th Status
+      th Duration
+  tbody
+    - @environment.deployments.each do |deployment|
+      tr[class="#{deployment.failed? ? '.text-error' : ''}"]
+        td = deployment.branch.name
+        td = deployment.short_revision
+        td
+          = link_to [@project, @environment, deployment] do
+            = deployment.created_at.to_s(:short)
+        td = deployment.created_by.andand.name
+        td = deployment.status
+        td
+          - if deployment.completed?
+            = duration_text(deployment.duration)
+          - else
+            | ---
+
+javascript:
+  $(function(){
+    $("#deployment_branch_id").change(function(evt){
+      $.ajax('#{polymorphic_path([:changes, @project, @environment])}', {
+        data: {
+          branch_id: $(this).val()
+        }
+      });
+    });
+  });

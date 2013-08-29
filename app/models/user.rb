@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  # has_many :deployments
+  has_many :deployments
 
   class << self
     attr_accessor :current

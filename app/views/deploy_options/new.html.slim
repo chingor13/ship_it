@@ -1,0 +1,15 @@
+h1 Add Deploy Option
+
+= form_for [@project, @deploy_option] do |form|
+  = form.label :name
+  = form.text_field :name
+
+  = form.label :value
+  = form.text_field :value
+
+  = form.label :visible do
+    = form.check_box :visible
+    | Value visible?
+
+  .form-actions
+    = form.submit "Add Option", class: "btn btn-primary"

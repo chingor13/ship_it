@@ -1,0 +1,29 @@
+h1 #{@project.name}
+
+table.table.table-striped
+  thead
+    tr
+      th Environment
+      th Branch
+      th Revision
+      th Last deployed
+      th Deployed by
+  tbody
+    - @project.environments.each do |environment|
+      tr
+        td
+          = link_to environment.name, [@project, environment]
+        - if deployment = environment.last_deployment
+          td
+            = deployment.branch.name
+          td
+            = deployment.short_revision
+          td
+            = deployment.started_at
+          td
+            = deployment.created_by
+        - else
+          td
+          td
+          td
+          td

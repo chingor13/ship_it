@@ -1,0 +1,14 @@
+li
+  = link_to [deployment.project, deployment.environment, deployment] do
+    = project.name
+    | /
+    = deployment.branch.name
+    | ->
+    = deployment.environment.name
+  - if deployment.failed?
+    | Failed at
+    = deployment.finished_at.to_s(:time)
+  - elsif deployment.started?
+    | Started at
+    = deployment.started_at.to_s(:time)
+    = render partial: 'deployments/progress', locals: {deployment: deployment}

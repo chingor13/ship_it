@@ -7,5 +7,6 @@ require "bootstrap-sass"
 require "turbolinks"
 require "slim"
 require "sqlite3"
+require "andand"
 
 require File.expand_path('../../../config/environment', __FILE__)

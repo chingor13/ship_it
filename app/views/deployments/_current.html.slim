@@ -1,0 +1,14 @@
+.current_deployments
+  - if recent_failures.present?
+    h4 Recent Failures
+    ul
+      = render recent_failures
+    br
+    hr
+    br
+
+  h4 Active Deployments
+  - if in_progress.present?
+    = render in_progress
+  - else
+    p.muted None.

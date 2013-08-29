@@ -12,4 +12,5 @@ gem "sqlite3"
 gem "omniauth"
 
 gem "cocaine"
-gem "grit"
+gem "git"
+gem "andand"

@@ -1,1 +1,22 @@
 h1 Projects
+
+table.table.table-striped
+  thead
+    tr
+      th
+        | Name
+      th
+        | Git repo URL
+      th
+  tbody
+    - @projects.each do |project|
+      tr
+        td
+          = project.name
+        td
+          = project.git_repo_url
+        td
+          = link_to "Edit", [:edit, project]
+
+= link_to new_project_path, class: "btn btn-primary" do
+  | New Project

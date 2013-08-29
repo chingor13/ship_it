@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+  $('ul.nav a[href="' + window.location.pathname + '"]').parent('li').addClass('active');
+
+  function pollCurrentDeploys() {
+    $.ajax('/deployments/in_progress.js');
+    setTimeout(pollCurrentDeploys, 5000);
+  }
+  pollCurrentDeploys();
+});

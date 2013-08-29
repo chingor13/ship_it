@@ -17,11 +17,14 @@ html
             | Ship It!
           .nav-collapse.collapse
             ul.nav
+              - @projects.each do |project|
+                li
+                  = link_to project.name, project
               li
-                | Project
+                = link_to "Setup", projects_path
     .container
       .row-fluid
         .span9
           = yield
         .span3
-          | current deploys
+          = render partial: "deployments/current"

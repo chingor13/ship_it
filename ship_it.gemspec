@@ -33,5 +33,6 @@ Gem::Specification.new do |s|
   s.add_dependency "omniauth"
 
   s.add_dependency "cocaine"
-  s.add_dependency "grit"
+  s.add_dependency "git"
+  s.add_dependency "andand"
 end

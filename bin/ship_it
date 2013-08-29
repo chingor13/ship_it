@@ -34,7 +34,7 @@ module ShipIt
 
     desc "runner", "Run the deployment runner"
     def runner
-      command = "bundle exec rake ship_it:run"
+      command = "bundle exec rake ship_it:run -f #{File.expand_path("../../Rakefile", __FILE__)}"
       system(command)
     end
 

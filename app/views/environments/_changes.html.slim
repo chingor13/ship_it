@@ -1,0 +1,24 @@
+/ environment
+/ branch
+- changes = environment.pending_changes(branch)
+
+h3 Pending Commits
+- if changes.present?
+  table.table.table-striped
+    thead
+      tr
+        th Revision
+        th Message
+    tbody
+      - changes.each do |commit|
+        tr
+          td commit.sha[0...8]
+          td commit.message
+- elsif branch.last_commit
+  p.muted
+    | None.
+    br
+    | Last commit: [#{branch.last_commit.sha[0...8]}] #{branch.last_commit.message}
+- else
+  p.muted
+    | None.

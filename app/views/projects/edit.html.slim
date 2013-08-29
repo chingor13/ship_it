@@ -1,0 +1,27 @@
+h1 Edit Project
+
+= form_for @project do |form|
+  = form.label :name, "Project name"
+  = form.text_field :name
+
+  = form.label :git_repo_url, "Git repo URL"
+  = form.text_field :git_repo_url
+
+  .form-actions
+    = form.submit "Update", class: "btn btn-primary"
+
+h2 Deploy Options
+- if @project.deploy_options.present?
+  dl
+    - @project.deploy_options.each do |option|
+      dt
+        = option.name
+      dd
+        = option.value
+        | -
+        = link_to [@project, option], method: :delete, data: {confirm: "Delete this option?"} do
+          | Delete
+- else
+  p.muted None.
+
+= link_to "Add deploy option", [:new, @project, :deploy_option]

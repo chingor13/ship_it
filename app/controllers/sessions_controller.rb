@@ -7,8 +7,6 @@ class SessionsController < ApplicationController
   end
 
   def new
-    pp OmniAuth.strategies
-    pp OmniAuth::Builder.providers
   end
 
   def create
