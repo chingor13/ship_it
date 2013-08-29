@@ -1,2 +1,2 @@
-.#{progress_classes(deployment.join(".")} data-deployment-id=deployment.id
-  .bar style="width:#{deployment_percent(deployment)}%;"
+div class="#{progress_classes(deployment).join(" ")}" data-deployment-id=deployment.id
+  .bar style="width:#{deployment_percent(deployment)}%"

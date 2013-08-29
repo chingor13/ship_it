@@ -1,6 +1,6 @@
 li
   = link_to [deployment.project, deployment.environment, deployment] do
-    = project.name
+    = deployment.project.name
     | /
     = deployment.branch.name
     | ->
