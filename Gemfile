@@ -10,3 +10,6 @@ gem "turbolinks"
 gem "slim"
 gem "sqlite3"
 gem "omniauth"
+
+gem "cocaine"
+gem "grit"

@@ -3,12 +3,16 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :request_setup, :load_projects, :authorize, :set_time_zone
+  before_filter :request_setup, :load_current_user, :load_projects, :authorize, :set_time_zone
 
   protected
 
   def request_setup
     User.current = nil
+  end
+
+  def load_current_user
+    User.current = User.find_by_id(session[:user_id]) if session.has_key?(:user_id)
   end
 
   def load_projects
@@ -17,11 +21,10 @@ class ApplicationController < ActionController::Base
 
   def authorize
     redirect_to login_path unless authorized?
-    User.current = User.find_by_id(session[:user_id])
   end
 
   def authorized?
-    session[:user_id].present? && session[:permissions].present?
+    session[:user_id].present?
   end
 
   def set_time_zone

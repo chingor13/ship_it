@@ -14,11 +14,16 @@
 ActiveRecord::Schema.define(version: 20130828234830) do
 
   create_table "branches", force: true do |t|
+    t.integer  "project_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "commits", force: true do |t|
+    t.integer  "deployment_id"
+    t.string   "sha"
+    t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -29,26 +34,44 @@ ActiveRecord::Schema.define(version: 20130828234830) do
   end
 
   create_table "deploy_options", force: true do |t|
+    t.integer  "project_id"
+    t.string   "name"
+    t.string   "value"
+    t.boolean  "visible",    default: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "deployments", force: true do |t|
+    t.integer  "branch_id"
+    t.integer  "environment_id"
+    t.string   "revision"
+    t.string   "log_file"
+    t.boolean  "success"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.integer  "created_by_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "environments", force: true do |t|
+    t.integer  "project_id"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "projects", force: true do |t|
+    t.string   "name"
+    t.string   "git_repo_url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email_address"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

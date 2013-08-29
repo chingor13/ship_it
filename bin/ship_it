@@ -1,6 +1,7 @@
 #!env ruby
 
 require 'thor'
+require 'cocaine'
 
 module ShipIt
   class CLI < Thor

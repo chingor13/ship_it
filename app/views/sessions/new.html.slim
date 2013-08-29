@@ -1,0 +1,7 @@
+h1 Login
+
+ul.unstyled
+  - OmniAuth::Builder.providers.each do |provider|
+    li
+      = link_to "/auth/#{provider}" do
+        | Login via #{provider}

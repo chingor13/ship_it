@@ -21,7 +21,7 @@ ShipIt::Application.routes.draw do
   end
 
   get '/auth/:provider/callback', :to => 'sessions#create'
-  get '/login', :to => redirect('/auth/avvo'), :as => 'login'
+  get '/login', :to => 'sessions#new', :as => 'login'
   get '/logout', :to => 'sessions#destroy', :as => 'logout'
 
   root to: "sessions#homepage"

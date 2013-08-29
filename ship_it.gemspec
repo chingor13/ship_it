@@ -31,4 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency "slim"
   s.add_dependency "sqlite3"
   s.add_dependency "omniauth"
+
+  s.add_dependency "cocaine"
+  s.add_dependency "grit"
 end
