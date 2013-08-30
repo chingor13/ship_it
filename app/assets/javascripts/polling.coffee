@@ -2,7 +2,11 @@ $ ->
   logStart = null
   intervals = []
   poll = (url) ->
-    $.ajax(url)
+    $.ajax(url, {
+      data: {
+        time: (new Date()).getTime()
+      }
+    })
 
   pollLog = (url) ->
     $.ajax(url, {
@@ -13,9 +17,7 @@ $ ->
       success: (data, status, xhr) ->
         log = $("#log")
         log.append(data).scrollTop(log.prop("scrollHeight")) if data != ""
-        if xhr.getResponseHeader('X-Log-Complete')
-          log.removeClass('uncompleted');
-        else
+        log.removeClass('uncompleted') if xhr.getResponseHeader('X-Log-Complete')
     })
 
   stopIntervals = () ->

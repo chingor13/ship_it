@@ -1,7 +1,7 @@
 - environment = deployment.environment
 - project = environment.project
 
-dl.status.dl-horizontal data-deployment-id=deployment.id
+dl.status.dl-horizontal data-deployment-id=deployment.id data-poll=(deployment.completed? ? nil : polymorphic_path([project, environment, deployment], format: :js))
   dt Status:
   dd = deployment.status
 

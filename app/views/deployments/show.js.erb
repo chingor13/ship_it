@@ -1,2 +1,1 @@
 $('.status[data-deployment-id="<%= @deployment.id %>"]').replaceWith("<%= escape_javascript render partial: 'details', locals: {deployment: @deployment} %>");
-<% unless @deployment.completed? %>setTimeout(function(){$("body").trigger("deployment:refresh");}, 5000);<% end %>

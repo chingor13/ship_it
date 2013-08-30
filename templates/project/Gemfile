@@ -1,3 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'ship_it', path: "~/code/gems/ship_it"
+gem 'ship_it'
+
+# change this if you want to change your database
+gem 'mysql2'
