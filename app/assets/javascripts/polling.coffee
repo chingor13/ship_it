@@ -1,12 +1,13 @@
 $ -> 
+  logStart = null
   intervals = []
   poll = (url) ->
     $.ajax(url)
 
-  pollLog = (url, offset) ->
+  pollLog = (url) ->
     $.ajax(url, {
       data: {
-        offset: offset,
+        offset: logStart,
         time: (new Date()).getTime()
       },
       success: (data, status, xhr) ->
@@ -32,10 +33,10 @@ $ ->
     $("*[data-poll-log").each (i, el) ->
       el = $(el)
       delay = el.attr('data-poll-delay') || 5000
-      start = el.attr('data-poll-log-start')
+      logStart = el.attr('data-poll-log-start')
       intervals.push setInterval () ->
-        pollLog el.attr('data-poll-log'), parseInt(start)
-      , delay if start
+        pollLog el.attr('data-poll-log')
+      , delay if logStart
 
   $(document).bind "page:load", setupPollingContent
   setupPollingContent()

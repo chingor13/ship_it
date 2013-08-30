@@ -56,4 +56,15 @@ module ApplicationHelper
     end
   end
 
+  def duration_text(seconds)
+    minutes = (seconds / 60.floor)
+    seconds %= 60
+    
+    string = ""
+    string << "#{minutes}m " if minutes
+    string << "#{seconds}s"
+    
+    string
+  end
+
 end

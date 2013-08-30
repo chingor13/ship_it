@@ -7,7 +7,7 @@ li
     = deployment.environment.name
   br
   - if deployment.failed?
-    | Failed at
+    | Failed at 
     = deployment.finished_at.to_s(:short)
   - elsif deployment.started?
     | Started at 

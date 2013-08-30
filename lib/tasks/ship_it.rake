@@ -36,8 +36,6 @@ namespace :ship_it do
       
     # main loop
     begin
-      puts "in main loop"
-
       # remove terminated threads from lists
       threads.select! { |thread| thread.alive? }
       deployment_threads.select! { |id, thread| thread.alive? }
@@ -64,6 +62,7 @@ namespace :ship_it do
             deployment.deploy!
           rescue => e
             pp e
+            pp e.backtrace
           end
         end
         
