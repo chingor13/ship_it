@@ -3,12 +3,13 @@ li
     = deployment.project.name
     | /
     = deployment.branch.name
-    | ->
+    | &nbsp;&#8658;&nbsp;
     = deployment.environment.name
+  br
   - if deployment.failed?
     | Failed at
-    = deployment.finished_at.to_s(:time)
+    = deployment.finished_at.to_s(:short)
   - elsif deployment.started?
-    | Started at
-    = deployment.started_at.to_s(:time)
+    | Started at 
+    = deployment.started_at.to_s(:short)
     = render partial: 'deployments/progress', locals: {deployment: deployment}

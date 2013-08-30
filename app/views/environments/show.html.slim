@@ -1,7 +1,7 @@
 h1 #{@project.name} : #{@environment.name}
 
 = form_for [@project, @environment, Deployment.new], html: {class: "form form-inline"} do |form|
-  = form.select :branch_id, @project.branches.map{|b| [b.name, b.id]}
+  = form.select :branch_id, @project.branches.map{|b| [b.name, b.id]}, {}, data: {change: polymorphic_path([:changes, @project, @environment])}
   | &nbsp;
   = form.submit "Deploy", class: "btn btn-primary"
 
@@ -34,13 +34,3 @@ table.table.table-striped
           - else
             | ---
 
-javascript:
-  $(function(){
-    $("#deployment_branch_id").change(function(evt){
-      $.ajax('#{polymorphic_path([:changes, @project, @environment])}', {
-        data: {
-          branch_id: $(this).val()
-        }
-      });
-    });
-  });

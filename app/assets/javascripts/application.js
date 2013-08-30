@@ -18,9 +18,11 @@
 $(function(){
   $('ul.nav a[href="' + window.location.pathname + '"]').parent('li').addClass('active');
 
-  function pollCurrentDeploys() {
-    $.ajax('/deployments/in_progress.js');
-    setTimeout(pollCurrentDeploys, 5000);
-  }
-  pollCurrentDeploys();
+  $("body").on("change", "select[data-change]", function(evt) {
+    var select = $(evt.target),
+      form = select.parents('form');
+    $.ajax(select.attr('data-change'), {
+      data: form.serializeArray()
+    })
+  });
 });

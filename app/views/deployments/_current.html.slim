@@ -1,7 +1,7 @@
-.current_deployments
+.current_deployments data-poll=in_progress_deployments_path
   - if recent_failures.present?
     h4 Recent Failures
-    ul
+    ul.unstyled
       = render recent_failures
     br
     hr
@@ -9,6 +9,7 @@
 
   h4 Active Deployments
   - if in_progress.present?
-    = render in_progress
+    ul.unstyled
+      = render in_progress
   - else
     p.muted None.

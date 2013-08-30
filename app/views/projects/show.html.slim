@@ -21,7 +21,7 @@ table.table.table-striped
           td
             = deployment.started_at
           td
-            = deployment.created_by
+            = deployment.created_by.andand.name
         - else
           td
           td

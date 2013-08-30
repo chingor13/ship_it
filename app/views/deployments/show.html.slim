@@ -28,44 +28,11 @@ table.table.table-striped
         td = commit.message
 
 h3 Log
-pre#log class="#{@deployment.completed? ? "" : "uncompleted"}"
 
-- unless @deployment.completed?
-  javascript:
-    $(function(){
-      function pollLog(offset) {
-        $.ajax("#{polymorphic_path([:log, @project, @environment, @deployment])}", {
-          data: {
-            offset: offset,
-            time: (new Date()).getTime()
-          },
-          success: function(data, status, xhr) {
-            if(data != "") {
-              $("#log").append(data).scrollTop($("#log").prop("scrollHeight"));
-            }
-            if(xhr.getResponseHeader('X-Log-Complete')) {
-              $("#log").removeClass('uncompleted');
-            } else {
-              setTimeout(function() { pollLog(offset + parseInt(xhr.getResponseHeader('X-Log-Length'))) }, 5000);
-            }
-          }
-        });
-      }
+- if @deployment.completed?
+  pre#log
+    = @deployment.log
+- else
+  pre#log.uncompleted data-poll-log=polymorphic_path([:log, @project, @environment, @deployment]) data-poll-log-start=(@deployment.log.andand.length || 0)
+    = @deployment.log
 
-      function pollStatus() {
-        $.ajax("#{polymorphic_path([@project, @environment, @deployment], format: :js)}");
-      }
-
-      pollLog(#{@deployment.log.andand.length || "0"});
-      pollStatus();
-      
-      $("body").bind("deployment:refresh", pollStatus);
-    });
-
-css:
-  pre {
-    max-height: 500px;
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-size: 10px;
-  }

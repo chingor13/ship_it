@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   skip_before_filter :authorize
 
   def homepage
+    redirect_to projects_path if authorized?
   end
 
   def new

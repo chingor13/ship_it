@@ -7,7 +7,7 @@ class EnvironmentsController < ApplicationController
   end
 
   def changes
-    @branch = Branch.find(params[:branch_id])
+    @branch = Branch.find(params[:deployment][:branch_id])
   end
 
   protected
