@@ -9,13 +9,13 @@ Gem::Specification.new do |s|
   s.version     = ShipIt::VERSION
   s.authors     = ["Jeff Ching"]
   s.email       = ["ching.jeff@gmail.com"]
-  s.homepage    = "http://chingr.com"
+  s.homepage    = "http://github.com/chingor13/ship_it"
   s.summary     = "Dashboard to manage capistrano deploys"
   s.description = "Dashboard to manage capistrano deploys"
   s.license     = "MIT"
   s.executables << "ship_it"
 
-  s.files = Dir["{app,config,db,lib,ship_it_app}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = `git ls-files`.split("\n")
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "thor"
