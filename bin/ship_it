@@ -26,15 +26,15 @@ module ShipIt
     end
     map "s" => :start
 
-    desc "stop", "Stops the thin server"
-    def stop
-      command = "bundle exec thin stop"
+    desc "init", "Setup your environment"
+    def init
+      command = "bundle exec rake db:setup"
       system(command)
     end
 
     desc "runner", "Run the deployment runner"
     def runner
-      command = "bundle exec rake ship_it:run -f #{File.expand_path("../../Rakefile", __FILE__)}"
+      command = "bundle exec rake ship_it:run"
       system(command)
     end
 
