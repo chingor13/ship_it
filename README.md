@@ -13,6 +13,9 @@ gem install `ship_it`
 # initialize a project directory
 ship_it new [PROJECT_NAME]
 
+# set up your databases
+ship_it init
+
 # run the server
 ship_it start
 

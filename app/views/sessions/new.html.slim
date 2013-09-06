@@ -1,6 +1,6 @@
 h1 Login
 
-ul.unstyled
+ul.unstyled data-no-turbolink=true
   - OmniAuth::Builder.providers.each do |provider|
     li
       = link_to "/auth/#{provider}" do
